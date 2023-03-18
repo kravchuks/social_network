@@ -1,0 +1,28 @@
+.selctedPage {
+  font-weight: bold;
+}
+
+.page {
+  padding: 0 10px;
+}
+
+.submit {
+  cursor: pointer;
+  border: 1px solid #cecece;
+  background: #f6f6f6;
+  box-shadow: inset 0px 20px 20px #ffffff;
+  border-radius: 8px;
+  padding: 8px 14px;
+  width: 120px;
+}
+.submit:hover {
+  box-shadow: inset 0px -20px 20px #ffffff;
+}
+.submit:active {
+  margin-top: 1px;
+  margin-bottom: -1px;
+  zoom: 1;
+}
+.submit:focus {
+  outline: none;
+}

@@ -1,0 +1,50 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+
+.dialogsItems {
+  padding: 10px;
+  border-right: 2px solid #6d6d6d;
+}
+
+.dialog {
+  text-decoration: none;
+  color: #000;
+}
+
+.active {
+  color: gold;
+}
+
+.messages {
+  padding: 10px;
+  color: #000;
+}
+
+.image {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.textarea {
+  margin-top: 80px;
+}
+
+.errorArea {
+  margin-top: 80px;
+  border: 2px solid red;
+}
+
+.errorSpan {
+  color: red;
+}
+
+.button {
+  display: block;
+}
+
+.warn {
+  font-size: 22px;
+  color: red;
+}

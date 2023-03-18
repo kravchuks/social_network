@@ -1,0 +1,61 @@
+.header {
+  grid-area: h;
+  background-color: #20232a;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  color: #61dafb;
+  font-size: 16spx;
+  text-decoration: none;
+}
+
+h1 {
+  margin: 5px;
+}
+
+span {
+  font-weight: 100;
+}
+
+.loginBlock {
+  text-align: center;
+  padding: 15px;
+}
+
+.userName {
+  color: #6d6d6d;
+}
+
+.login__link {
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.img {
+  height: 60px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .img {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
