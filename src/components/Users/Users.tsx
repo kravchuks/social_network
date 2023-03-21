@@ -1,9 +1,10 @@
 import React from "react";
 
-import { UsersType } from "types/types";
+import { UsersType, FilterType } from "types/types";
 import Paginator from "utils/Paginator/Paginator";
 import User from "./User";
 import styles from "./Users.module.css";
+import UsersSearchForm from "./UsersSearchForm";
 
 type PropsType = {
   totalUsersCount: number;
@@ -14,6 +15,7 @@ type PropsType = {
   followingInProgres: Array<number>;
   follow: (userId: number) => void;
   unfollow: (userId: number) => void;
+  onFilterChanged: (filter: FilterType) => void;
 };
 
 const Users: React.FC<PropsType> = ({
@@ -25,9 +27,12 @@ const Users: React.FC<PropsType> = ({
   followingInProgres,
   follow,
   unfollow,
+  onFilterChanged,
 }) => {
   return (
     <div className={styles.user}>
+      <UsersSearchForm onFilterChanged={onFilterChanged} />
+
       <Paginator
         totalUsersCount={totalUsersCount}
         pageSize={pageSize}

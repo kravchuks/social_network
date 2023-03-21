@@ -44,7 +44,11 @@ const Dialogs: React.FC<PropsType> = ({
   );
 };
 
-const AddMessageForm = (props) => {
+type AddMessageFormPropsType = {
+  addMessageText: (text: string) => void;
+};
+
+const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
   const validationSchema = () =>
     yup.object().shape({
       textarea: yup
@@ -78,7 +82,8 @@ const AddMessageForm = (props) => {
         return (
           <div>
             <div>
-              <textarea
+              <Field
+                as="textarea"
                 type="text"
                 name={"textarea"}
                 onChange={handleChange}
@@ -93,7 +98,7 @@ const AddMessageForm = (props) => {
             )}
             <button
               disabled={!isValid && !dirty}
-              onClick={handleSubmit}
+              // onClick={handleSubmit}
               type="submit"
               className={styles.button}
             >

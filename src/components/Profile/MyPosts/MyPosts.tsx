@@ -36,7 +36,11 @@ const MyPosts: React.FC<PropsType> = ({ posts, addPost }) => {
   );
 };
 
-const MyPostForm = (props) => {
+type MyPostFormPropsType = {
+  onAddPost: (text: string) => void;
+};
+
+const MyPostForm: React.FC<MyPostFormPropsType> = (props) => {
   const validationSchema = () =>
     yup.object().shape({
       textarea: yup
@@ -70,7 +74,7 @@ const MyPostForm = (props) => {
         return (
           <div>
             <div>
-              <textarea
+              <Field as="textarea"
                 type="text"
                 name={"textarea"}
                 onChange={handleChange}
@@ -85,7 +89,7 @@ const MyPostForm = (props) => {
             )}
             <button
               disabled={!isValid && !dirty}
-              onClick={handleSubmit}
+              // onClick={handleSubmit}
               type="submit"
               className={styles.submit}
             >
