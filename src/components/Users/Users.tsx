@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import {
   getTotalUsersCount,
@@ -26,10 +27,47 @@ const Users: React.FC = () => {
   const filter = useSelector(getFilter);
 
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(requestUsers(currentPage, pageSize, filter));
   }, []);
+
+  useEffect(() => {
+    const parsed = Object.fromEntries(
+      new URLSearchParams(window.location.search)
+    );
+
+    let actualPage = currentPage;
+    let actualFilter = filter;
+
+    if (!!parsed.page) actualPage = Number(parsed.page);
+    if (!!parsed.term) actualFilter = { ...actualFilter, term: parsed.term };
+    switch (parsed.friend) {
+      case "null":
+        actualFilter = { ...actualFilter, friend: null };
+        break;
+      case "true":
+        actualFilter = { ...actualFilter, friend: true };
+        break;
+      case "false":
+        actualFilter = { ...actualFilter, friend: false };
+        break;
+    }
+
+    dispatch(requestUsers(actualPage, pageSize, actualFilter));
+  }, []);
+
+  useEffect(() => {
+    const query: any = {};
+    if (!!filter.term) query.term = filter.term;
+    if (filter.friend !== null) query.friend = String(filter.friend);
+    if (currentPage !== 1) query.page = String(currentPage);
+
+    navigate({
+      search: new URLSearchParams(query).toString(),
+    });
+  }, [filter, currentPage]);
 
   const onPAgeChanged = (pageNumber: number) => {
     dispatch(requestUsers(pageNumber, pageSize, filter));
