@@ -22,6 +22,7 @@ const rootReducer = combineReducers({
 
 type RootReducerType = typeof rootReducer;
 export type AppStateType = ReturnType<RootReducerType>;
+export type AppDispatch = typeof store.dispatch
 
 type PropertiesTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
