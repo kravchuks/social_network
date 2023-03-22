@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Field, Formik } from "formik";
+import { Field, Formik, Form } from "formik";
 import { Navigate } from "react-router-dom";
 import * as yup from "yup";
 
@@ -23,12 +23,12 @@ const LoginForm: React.FC = () => {
     rememberMe,
     captcha,
   }: {
-    email: string;
     password: string;
+    email: string;
     rememberMe: boolean;
-    captcha: string;
+    captcha?: string;
   }) => {
-    dispatch(login(email, password, rememberMe, captcha));
+    dispatch(login(email, password, rememberMe, captcha || ""));
   };
 
   const validationSchema = yup.object().shape({
@@ -46,13 +46,12 @@ const LoginForm: React.FC = () => {
     return <Navigate to={"/profile"} />;
   }
   return (
-    <div>
+    <>
       <h1>Login</h1>
       <Formik
         initialValues={{
           password: "",
           email: "",
-          confirmEmail: "",
           rememberMe: false,
           captcha: "",
         }}
@@ -70,7 +69,7 @@ const LoginForm: React.FC = () => {
           handleSubmit,
           dirty,
         }) => (
-          <div>
+          <Form>
             <div>
               <Field
                 type="email"
@@ -162,10 +161,10 @@ const LoginForm: React.FC = () => {
                 Send
               </button>
             </div>
-          </div>
+          </Form>
         )}
       </Formik>
-    </div>
+    </>
   );
 };
 
