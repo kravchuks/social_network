@@ -44,8 +44,8 @@ const Users: React.FC = () => {
     if (!!parsed.page) actualPage = Number(parsed.page);
     if (!!parsed.term) actualFilter = { ...actualFilter, term: parsed.term };
     switch (parsed.friend) {
-      case "null":
-        actualFilter = { ...actualFilter, friend: null };
+      case "":
+        actualFilter = { ...actualFilter, friend: '' };
         break;
       case "true":
         actualFilter = { ...actualFilter, friend: true };
@@ -61,7 +61,7 @@ const Users: React.FC = () => {
   useEffect(() => {
     const query: any = {};
     if (!!filter.term) query.term = filter.term;
-    if (filter.friend !== null) query.friend = String(filter.friend);
+    if (filter.friend !== '') query.friend = String(filter.friend);
     if (currentPage !== 1) query.page = String(currentPage);
 
     navigate({

@@ -15,7 +15,7 @@ const initialState = {
   followingInProgres: [] as Array<number>, // array of users ids
   filter: {
     term: "",
-    friend: null as null | boolean,
+    friend: '' as string | boolean,
   },
 };
 

@@ -12,7 +12,7 @@ export const usersAPI = {
     currentPage: number,
     pageSize: number = 10,
     term: string,
-    friend: null | boolean
+    friend: string | boolean
   ) {
     return instance
       .get<GetItensType>(

@@ -51,5 +51,5 @@ export type MessageType = {
 
 export type FilterType = {
   term: string;
-  friend: null | boolean;
+  friend: string | boolean;
 };
