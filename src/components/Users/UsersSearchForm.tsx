@@ -38,7 +38,7 @@ const UsersSearchForm: React.FC<PropsType> = ({ onFilterChanged }) => {
             <Field type="text" name="term" />
 
             <Field as="select" name="friend">
-              <option value="null">All</option>
+              <option value="">All</option>
               <option value="true">Only followed</option>
               <option value="false">Only unfollowed</option>
             </Field>

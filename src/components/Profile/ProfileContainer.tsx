@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { compose } from "redux";
 
 import {
@@ -23,8 +23,8 @@ export function withRouter(Children: React.FC) {
     type HistoryType = {
       push: (path: string) => void;
     };
-    const history = useNavigate();
-    return <Children {...props} match={match} history={history} />;
+    const navigate = useNavigate();
+    return <Children {...props} match={match} navigate={navigate} />;
   };
 }
 
@@ -38,19 +38,21 @@ type DispatchPropsType = {
 };
 
 type PropsType = MapPropsType &
-  DispatchPropsType & { match: any; history: any };
+  DispatchPropsType & { match: any; navigate: any };
 
 class ProfileContainer extends React.Component<PropsType> {
   refreshProfile = () => {
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = this.props.authorizedUserId;
-      if (userId == null) {
-        return this.props.history("/login");
+      if (userId === null || userId === undefined || userId === "") {
+        return this.props.navigate("/login");
       }
     }
-    this.props.getUserProfile(userId);
-    this.props.getStatus(userId);
+    if (userId) {
+      this.props.getUserProfile(userId);
+      this.props.getStatus(userId);
+    }
   };
   componentDidMount() {
     this.refreshProfile();
